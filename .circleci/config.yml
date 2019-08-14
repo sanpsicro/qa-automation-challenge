@@ -26,12 +26,42 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: yarn install
+      - run: npm install
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-
+          
+      - run: npm run setup
+      
       # run tests!
-      - run: yarn test
+      
+  test:
+      docker:
+      # specify the version you desire here
+      - image: circleci/node:7.10
+      
+
+      steps:
+      
+      - checkout
+      - setup_remote_docker
+        
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+            
+        
+      
+workflows:
+  version: 2
+  build_test:
+    jobs:
+    - build
+    - test:
+        requires:
+          - build
