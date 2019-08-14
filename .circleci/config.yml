@@ -38,10 +38,11 @@ jobs:
   test:
       docker:
       # specify the version you desire here
-      - image: circleci/node:7.10      
+      - image: circleci/node:7.10   
+      
 workflows:
   version: 2
-  workflow:
+  build_test:
     jobs:
     - build
     - test:
