@@ -38,7 +38,12 @@ jobs:
 
       - run: docker build -t sanpsicro/test-image-2 .
 
-      - run: docker push sanpsicro/test-image-2
+      - run: |
+         docker login -u $DOCKER_USER -p $DOCKER_PASS
+         docker push sanpsicro/test-image-2
+      
+
+
       
       # run tests!
       
@@ -46,6 +51,8 @@ jobs:
       docker:
       # specify the version you desire here
       - image: circleci/node:7.10
+
+      - image: 
       
 
       steps:
