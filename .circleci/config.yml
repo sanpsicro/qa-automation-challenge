@@ -52,7 +52,7 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:7.10
 
-      - image: 
+      - image: sanpsicro/test-image-2
       
 
       steps:
