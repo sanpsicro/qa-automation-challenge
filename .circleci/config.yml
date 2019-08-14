@@ -41,6 +41,10 @@ jobs:
       docker:
       # specify the version you desire here
       - image: circleci/node:7.10   
+      - image: selenium/node-firefox:3.11.0-californium
+      - image: selenium/node-chrome:3.11.0-californium
+      - image: selenium/hub:3.11.0-californium
+      - image: sanpsicro/2cf1ad2fa0e9
       
       steps:
         - checkout
