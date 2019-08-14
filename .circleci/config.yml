@@ -36,7 +36,7 @@ jobs:
           
       - run: npm run setup
 
-      - run: sudo docker build -t sanpsicro/test-image-2 .
+      - run: docker build -t sanpsicro/test-image-2 .
       
       # run tests!
       
