@@ -36,7 +36,7 @@ jobs:
       - run: npm run setup
       
       # run tests!
-      - run: npm run server
+      
   test:
       docker:
       # specify the version you desire here
