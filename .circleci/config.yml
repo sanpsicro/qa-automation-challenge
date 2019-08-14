@@ -6,6 +6,9 @@ version: 2
 jobs:
   build:
     docker:
+      auth:
+          username: sanpsicro  # can specify string literal values
+          password: san671988
       # specify the version you desire here
       - image: circleci/node:7.10
 
@@ -38,9 +41,8 @@ jobs:
 
       - run: docker build -t sanpsicro/test-image-2 .
 
-      - run: |
-         docker login -u $DOCKER_USER -p $DOCKER_PASS
-         docker push sanpsicro/test-image-2
+      - run: docker push sanpsicro/test-image-2
+         
       
 
 
