@@ -40,11 +40,35 @@ jobs:
   test:
       docker:
       # specify the version you desire here
-      - image: circleci/node:7.10   
+      - image: circleci/node:7.10
       - image: selenium/node-firefox:3.11.0-californium
+          volumes:
+            - /dev/shm:/dev/shm
+          depends_on:
+            - hub
+          environment:
+            HUB_HOST: hub
       - image: selenium/node-chrome:3.11.0-californium
+           volumes:
+            - /dev/shm:/dev/shm
+          depends_on:
+            - hub
+          environment:
+            HUB_HOST: hub
       - image: selenium/hub:3.11.0-californium
+           volumes:
+            - /dev/shm:/dev/shm
+          depends_on:
+            - hub
+          environment:
+            HUB_HOST: hub
       - image: sanpsicro/2cf1ad2fa0e9
+           volumes:
+            - /dev/shm:/dev/shm
+          depends_on:
+            - hub
+          environment:
+            HUB_HOST: hub
       
       steps:
         - checkout
