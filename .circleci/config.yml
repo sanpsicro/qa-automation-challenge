@@ -41,6 +41,7 @@ jobs:
       - run: |
           docker login -u sanpsicro -p san671988
           docker push sanpsicro/test-image-2
+     
           
       
 
@@ -53,8 +54,12 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:7.10
 
-      - image: sanpsicro/test-image-2
-      
+      working_directory: ~/test
+
+      environment:
+      # Customize the JVM maximum heap limit
+        MAVEN_OPTS: -Xmx3200m
+
 
       steps:
       
@@ -68,7 +73,10 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
             docker-compose up -d
-        
+      - run: mvn dependency:go-offline
+
+      # run tests!
+      - run: mvn clean -Dsuite=web test
       
 workflows:
   version: 2
