@@ -40,6 +40,9 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:7.10   
       
+      steps:
+        true
+      
 workflows:
   version: 2
   build_test:
