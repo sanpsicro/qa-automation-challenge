@@ -52,7 +52,7 @@ jobs:
   test:
       docker:
       # specify the version you desire here
-      - image: circleci/node:7.10
+      - image: circleci/openjdk:8-jdk
 
       working_directory: ~/test
 
@@ -73,7 +73,21 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
             docker-compose up -d
+      
+      # Download and cache dependencies
+      - run: git clone https://github.com/sanpsicro/carina-frm.git
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
       - run: mvn dependency:go-offline
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
 
       # run tests!
       - run: mvn clean -Dsuite=web test
