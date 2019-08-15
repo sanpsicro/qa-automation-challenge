@@ -39,7 +39,7 @@ jobs:
       - run: docker build -t sanpsicro/test-image-2 .
 
       - run: |
-          docker login -u sanpsicro -p san671988
+          docker login -u sanpsicro -p dockerpass
           docker push sanpsicro/test-image-2
      
           
