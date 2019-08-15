@@ -74,8 +74,8 @@ jobs:
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
             docker-compose up -d
       
-      # Download and cache dependencies
-      - run: git clone https://github.com/sanpsicro/carina-frm.git
+      # Download and cache dependenciesgit
+      - run: git clone https://github.com/sanpsicro/automation_carina.git
 
       - run: |
           cd carina-frm 
