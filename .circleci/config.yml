@@ -78,12 +78,12 @@ jobs:
       - run: git clone https://github.com/sanpsicro/automation_carina.git
 
       - run: |
-          cd carina-frm 
+          cd automation_carina
           mvn dependency:go-offline
 
       # run tests!
       - run: |
-          cd carina-frm
+          cd automation_carina
           mvn clean -Dsuite=web test
       
 workflows:
