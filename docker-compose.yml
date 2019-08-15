@@ -24,6 +24,9 @@ services:
     image: selenium/hub:3.11.0-californium
     ports:
       - "4444:4444"
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.3
 
   app:
     image: sanpsicro/test-image-2:latest
@@ -33,3 +36,14 @@ services:
       - hub
     environment:
       HUB_HOST: hub
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
